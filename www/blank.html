@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   >
+<head>
+	<meta name="format-detection" content="telephone-no">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1" />
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link rel="stylesheet" href="css/reset.css" type="text/css" /> 
+	
+	<title></title>
+	
+	<script src="js/jquery-1.8.2.min.js" type="text/javascript"></script>
+	<script src="phonegap.js" type="text/javascript"></script>
+	<script src="js/fastclick.js" type="text/javascript"></script>
+	<script src="js/scale.js" type="text/javascript"></script>
+
+	<script>
+		function init() {			
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start init()');
+			document.addEventListener("deviceready", onDeviceReady, false);
+			//document.addEventListener("DOMContentLoaded", loaded, false);
+			
+			onDeviceReady();
+		}
+		function onDeviceReady() {
+			FastClick.attach(document.body);	
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start onDeviceReady');
+			scalePage(768,"#exit-btn",true);
+			scalePage_center(768,"#main",true);
+			
+			if ( device.platform == 'iOS' ){//Android,iOS,win7=WinCE,win8=Win32NT
+				$('#exit-btn').css({'display':'none'});
+			}
+
+		}
+		function exit() {
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Exit the app! command');
+			navigator.app.exitApp();
+		}
+	</script>
+
+
+<style>
+#main{
+	height:768px;
+	width:1024px;
+	background:gray;
+	z-index:1;
+}
+#exit-btn{
+	width:100px;
+	height:100px;
+	overflow:hidden;
+	position:fixed;
+	top:0;
+	left:0;
+	background:url('images/exit.png') no-repeat 0 0;
+	background-size:cover;
+	cursor:pointer;
+	z-index:2;
+}
+</style>
+</head>
+<body onload="init()">
+	<div id="temp"></div>
+	<div id="exit-btn" onclick="exit();"></div>
+	<div id="main">
+		سلام
+	</div>
+	
+	
+	
+	
+
+</body>
+</html>
